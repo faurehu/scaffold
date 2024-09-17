@@ -8,6 +8,7 @@ docker build \
     --build-arg PROJECT_NAME=$PROJECT_NAME \
     --build-arg NB_USER=$NB_USER \
     --build-arg DEV_MODE=T \
+    --build-arg PANDOC_VERSION=3.5.0 \
     --no-cache \
     -t scaffold:latest \
     .

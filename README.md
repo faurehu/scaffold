@@ -7,9 +7,23 @@
 - `sh scripts/new_project.sh`
 - `sh scripts/attach_project.sh`
 
+# Project configuration
+
+Here are a few things you might want to do everytime you start a new project:
+- Copy the `.env.sample` file to `.env` and modify the values in it.
+- Run `p10k configure` from an attached container to set up your terminal and ensure it uses the appropriate fonts.
+
+# Features
+
+## Pandoc
+
+Use `sh ./scripts/pandoc.sh sample_memo` to see how the files in `$PROJECT_NAME/markdown/sample_memo` produce `sample_memo.pdf` in `$PROJECT_NAME/pdf`. Notice that there is a macro `\insertfigure` which only needs the name of the figure in `$PROJECT_NAME/assets/figures`. Similarly, `\input` will find your `.tex` tables in `$PROJECT_NAME/assets/tables`.
+
+There is also `sh ./scripts/beamer.sh` and a corresponding sample directory. Unfortunately, pandoc's `--include-before-body` is not working so for now it does not have the same nice features as the memo template.
+
 # Development
 
-`sh scripts/dev.sh`
+Call `sh scripts/dev.sh` to quickly start a fresh new container with the image and see the changes made in Dockerfile or other configuration files.
 
 ## Adding new custom R functions
 
@@ -25,28 +39,31 @@ Data that is private and is relevant to the project goes to the `/$PROJECT_NAME/
 
 `project_template/assets/data/Description.md` should describe the files. It is very important that there is a reference to find information about source, timespan and variables.
 
+## Version control
+
+There are two repository configurations in this directory. The first one corresponds to the scaffold project, which manages the reusable code and configurations for each new project. The second git repository is for each new project that is instantiated. Hence, be mindful of what changes you are staging and committing and to which repository.
+
+When making changes to the scaffold project, use git from the root directory. If you do it from another directory there is a chance you will be making changes to the vanilla repository.
+
+Containers do not have a reference to the scaffold repository, so it is safe to use git from any directory. You can call git from the attached shell of a docker container in the `/home/$NB_USER/working/$PROJECT_NAME` directory.
+
 ## Project roadmap
 
-- Prepare LaTeX documents
-- Zotero
-    - Cite papers from directory?
-    - Bibtex? How to build it?
-    - Paper management
-    - https://forums.zotero.org/discussion/comment/461489#Comment_461489
-    - https://www.zotero.org/support/attaching_files
-- HPC
-- Simulated data
-- Power analysis
-- Survey generation
 - R functions for exporting graphs and tables.
+    - Save plot
+    - Save table
 - ggplot colors
-- textlint https://textlint.github.io/docs/getting-started.html
-- Include EDSL
+- Power analysis
+- Simulated data / survey generation
+    - Try EDSL https://docs.expectedparrot.com/en/latest/overview.html
+- HPC
+- Include a bit more data
+- Move home directory to project?
+    - Would alter R and pandoc script paths
+- Jupyter notebooks
 - Implement tidymodels https://www.tidymodels.org/start/recipes/
-- Try edsl https://docs.expectedparrot.com/en/latest/overview.html
 - VSCode settings and extensions
     - R
     - Keyboard shortcuts
-- Add LLM prompting (langflow, etc)
-    - Pre-install python and packages
 - Linters
+    - textlint https://textlint.github.io/docs/getting-started.html

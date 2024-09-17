@@ -3,9 +3,7 @@
 % fontsize (text): 12pt is good
 % geometry (list): specify the margins of the document. margin = 1in is good
 % graphics: pandoc take cares of this
-% title-short: text for header
 % title
-% title-footnote
 % subtitle
 % date
 % nocite: list of keys that we want included but not cited
@@ -45,6 +43,7 @@ $endif$
 \usepackage{pdflscape}
 \usepackage{placeins}
 \usepackage{graphicx}
+\usepackage{verbatim}
 
 % \hypersetup{frenchlinks=true}
 \hypersetup{
@@ -52,6 +51,18 @@ $endif$
     linkcolor={red!50!black},
     citecolor={blue!50!black},
     urlcolor={blue!80!black}
+}
+
+\makeatletter
+\def\input@path{{./${PROJECT_NAME}/assets/tables/}}
+\makeatother
+\newcommand{\insertfigure}[3]{
+    \begin{figure}[!ht]
+        \centering
+        \includegraphics[trim = 0mm 0mm 0mm 0mm, clip, width=1\linewidth]{#2}
+        \caption{#3}
+        \label{fig:#1}
+    \end{figure}
 }
 
 \makeatletter
@@ -66,7 +77,6 @@ $endif$
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-
 
 $for(header-includes)$
 $header-includes$
@@ -107,60 +117,30 @@ $endif$
 
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[LO]{\small \textit{\leftmark}}
-\fancyhead[LE]{\small \textit{$title-short$}}
-\fancyhead[RO, RE]{\rule[-1.1ex]{0.4pt}{3.5ex} \thepage \hspace{1.5mm}}
+\fancyhead[RE, RO]{\small Matias Faure}
+\fancyhead[LO, LO]{\small $date$}
 \renewcommand{\headrulewidth}{0.4pt}
-
-\fancypagestyle{emptyintroheader}{
-  \fancyhf{}
-  \fancyhead[RO, RE]{\rule[-1.1ex]{0.4pt}{3.5ex} \thepage \hspace{1.5mm}}
-  \renewcommand{\headrulewidth}{0.4pt}
-}
-
-\fancypagestyle{emptyheader}{
-  \fancyhf{}
-}
 
 \title{$title$ \\ \vspace{10pt} \large $subtitle$}
 \author{Matias Faure}
 \date{$date$}
 
-\newenvironment{customabstract}
-  {\begin{center}\bfseries\abstractname\end{center}}
-  {}
-
 \newcommand{\customtitle}{
-  \begingroup
-  \renewcommand{\thefootnote}{\fnsymbol{footnote}}
-  \thispagestyle{empty}
-  \centering
-  \vspace*{2cm}
-  {\Huge\bfseries $title$ $if(title-footnote)$\footnote{$title-footnote$}$endif$ \par}
-  \vspace{0.5cm}
-  $if(subtitle)$
-  {\Large\itshape $subtitle$ \par}
-  \vspace{0.5cm}
-  $endif$
-  {$if(subtitle)$\large$else$\Large$endif$ Matias Faure \par}
-  \vspace{0.5cm}
-  $if(date)$
-  {\large $date$ \par}
-  \vspace{0.5cm}
-  $endif$
-  \renewcommand{\thefootnote}{\arabic{footnote}}
-  \endgroup
+    \begingroup
+    % \vspace*{2cm}
+    {\LARGE\bfseries $title$ \par}
+    % \vspace{0.5cm}
+    $if(subtitle)$
+    {\large\itshape $subtitle$ \par}
+    \vspace{0.5cm}
+    $endif$
+    \rule[1.2ex]{\linewidth}{0.4pt}
+    \endgroup
 }
 
 \begin{document}
 
 \customtitle
-$if(abstract)$
-\begin{customabstract}
-  $abstract$
-\end{customabstract}
-$endif$
-\newpage
 
 $body$
 

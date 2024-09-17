@@ -1,0 +1,19 @@
+# header-includes (text): additional latex code to include in the latex header
+    # useful for appending packages
+# numbersections (boolean): enable or disable the numbering of sections
+# fontsize (text): 12pt is good
+# geometry (list): specify the margins of the document. margin = 1in is good
+# title (text)
+# subtitle (text)
+# date (text)
+# nocite (list): list of citation keys in bibtex that we want included in
+    # bibliography even if not cited in main text
+# bibliography (text): bibtex filename placed in the workings directory
+title: "Test Memo"
+title-short: "The Fiscal Burden on the Immigration Skill Premium"
+date: "Summer 2024"
+subtitle: "Showcasing the Pandoc script in the scaffold container"
+geometry: |
+    margin=1in
+fontsize: 12pt
+bibliography: citations

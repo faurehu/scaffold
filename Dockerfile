@@ -16,9 +16,19 @@ WORKDIR /home/$NB_USER/working
 
 COPY .gitconfig /home/$NB_USER/.gitconfig
 
+RUN apt-get update \
+    && apt-get -y install --no-install-recommends gettext-base
+
 RUN mv bin/* /usr/local/bin && \
     mv ./.zshrc ../.zshrc && \
+    mv ./.p10k.zsh ../.p10k.zsh && \
     rm -rf bin
+
+RUN tlmgr install \
+    layouts \
+    arydshln \
+    relsize \
+    harvard
 
 RUN if [ -z "$DEV_MODE" ]; then \
     R -e "install.packages(c( \
@@ -31,6 +41,8 @@ RUN if [ -z "$DEV_MODE" ]; then \
         'stargazer', \
         'simstudy'))"; \
     fi
+
+RUN pip install pandoc-include
 
 USER $NB_USER
 

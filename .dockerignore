@@ -2,3 +2,7 @@ mounts
 project_template
 Dockerfile
 README.md
+./scripts/attach_project.sh
+./scripts/run_project.sh
+./scripts/build_image.sh
+./scripts/dev.sh
