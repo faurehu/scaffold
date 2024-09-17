@@ -17,9 +17,13 @@ Here are a few things you might want to do everytime you start a new project:
 
 ## Pandoc
 
-Use `sh ./scripts/pandoc.sh sample_memo` to see how the files in `$PROJECT_NAME/markdown/sample_memo` produce `sample_memo.pdf` in `$PROJECT_NAME/pdf`. Notice that there is a macro `\insertfigure` which only needs the name of the figure in `$PROJECT_NAME/assets/figures`. Similarly, `\input` will find your `.tex` tables in `$PROJECT_NAME/assets/tables`.
+You can use `sh ./scripts/pandoc.sh sample_memo` to see how the files in `$PROJECT_NAME/markdown/sample_memo` produce `sample_memo.pdf` in `$PROJECT_NAME/pdf`, but first, make sure to run the R code in `$PROJECT_NAME/R/sample_save.R` to produce the assets. Notice that there is a macro `\insertfigure` which only needs the name of the figure in `$PROJECT_NAME/assets/figures`. Similarly, `\input` will find your `.tex` tables in `$PROJECT_NAME/assets/tables`.
 
 There is also `sh ./scripts/beamer.sh` and a corresponding sample directory. Unfortunately, pandoc's `--include-before-body` is not working so for now it does not have the same nice features as the memo template.
+
+## HPC
+
+After loading the container to the HPC, you can use `scripts/run_task.sh` to queue a R file onto the HPC. This will execute the code in `task.s` which, in turn, is fitted to start the R code of your choice. Look up SLURM docs to learn how to configure the batch so that it runs up to 100 processes in parallel.
 
 # Development
 
@@ -49,17 +53,14 @@ Containers do not have a reference to the scaffold repository, so it is safe to 
 
 ## Project roadmap
 
-- R functions for exporting graphs and tables.
-    - Save plot
-    - Save table
-- ggplot colors
 - Power analysis
 - Simulated data / survey generation
     - Try EDSL https://docs.expectedparrot.com/en/latest/overview.html
 - HPC
 - Include a bit more data
+- Global settings and themes for ggplot and stargazer
 - Move home directory to project?
-    - Would alter R and pandoc script paths
+    - Would alter R and pandoc script paths but make more sense
 - Jupyter notebooks
 - Implement tidymodels https://www.tidymodels.org/start/recipes/
 - VSCode settings and extensions

@@ -1,0 +1,1 @@
+sbatch ./scripts/task.s --output="./out/task_%A_%a.out"

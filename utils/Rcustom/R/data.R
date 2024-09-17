@@ -1,6 +1,6 @@
 get_proj_data <- function() {
     file_list <- list.files(path = get_data_path(), pattern = "\\.csv$", full.names = TRUE)
-    data_csv_path <- file.path(get_data_path(), "data.csv")
+    data_csv_path <- get_data_path("data", ".csv")
 
     if (data_csv_path %in% file_list) {
         df <- read.csv(data_csv_path)

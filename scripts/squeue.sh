@@ -1,0 +1,1 @@
+while true; do squeue -u fh2146; sleep 1; done
