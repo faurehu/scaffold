@@ -1,0 +1,6 @@
+.Rproj.user
+/project
+.DS_Store
+.env
+/mounts/*
+*.RData

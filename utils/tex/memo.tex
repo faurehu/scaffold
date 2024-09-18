@@ -1,0 +1,179 @@
+% header-includes (text): additional lines to include in the header, useful for appending packages
+% numbersections (boolean): enable or disable the numbering of sections
+% fontsize (text): 12pt is good
+% geometry (list): specify the margins of the document. margin = 1in is good
+% graphics: pandoc take cares of this
+% title-short: text for header
+% title
+% title-footnote
+% subtitle
+% date
+% nocite: list of keys that we want included but not cited
+% abstract
+% bibliography: name of the bib file
+
+\documentclass[
+  twoside,
+$if(fontsize)$
+  $fontsize$
+$endif$
+]{report}
+
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+
+\usepackage{titlesec}
+\usepackage{longtable}
+\usepackage{calc}
+\usepackage{layouts}
+\usepackage{dcolumn}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{arydshln}
+\usepackage{relsize}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage{appendix}
+\usepackage[round]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titling} 
+\usepackage{setspace}
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+\usepackage{pdflscape}
+\usepackage{placeins}
+\usepackage{graphicx}
+
+% \hypersetup{frenchlinks=true}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+$else$
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+$endif$
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+$if(graphics)$
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+$endif$
+
+% \bibliographystyle{abbrvnat}
+\bibliographystyle{agsm}
+
+\renewcommand{\sectionmark}[1]{ \markboth{#1}{} }
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\small \textit{\leftmark}}
+\fancyhead[LE]{\small \textit{$title-short$}}
+\fancyhead[RO, RE]{\rule[-1.1ex]{0.4pt}{3.5ex} \thepage \hspace{1.5mm}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\fancypagestyle{emptyintroheader}{
+  \fancyhf{}
+  \fancyhead[RO, RE]{\rule[-1.1ex]{0.4pt}{3.5ex} \thepage \hspace{1.5mm}}
+  \renewcommand{\headrulewidth}{0.4pt}
+}
+
+\fancypagestyle{emptyheader}{
+  \fancyhf{}
+}
+
+\title{$title$ \\ \vspace{10pt} \large $subtitle$}
+\author{Matias Faure}
+\date{$date$}
+
+\newenvironment{customabstract}
+  {\begin{center}\bfseries\abstractname\end{center}}
+  {}
+
+\newcommand{\customtitle}{
+  \begingroup
+  \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+  \thispagestyle{empty}
+  \centering
+  \vspace*{2cm}
+  {\Huge\bfseries $title$ $if(title-footnote)$\footnote{$title-footnote$}$endif$ \par}
+  \vspace{0.5cm}
+  $if(subtitle)$
+  {\Large\itshape $subtitle$ \par}
+  \vspace{0.5cm}
+  $endif$
+  {$if(subtitle)$\large$else$\Large$endif$ Matias Faure \par}
+  \vspace{0.5cm}
+  $if(date)$
+  {\large $date$ \par}
+  \vspace{0.5cm}
+  $endif$
+  \renewcommand{\thefootnote}{\arabic{footnote}}
+  \endgroup
+}
+
+\begin{document}
+
+\customtitle
+$if(abstract)$
+\begin{customabstract}
+  $abstract$
+\end{customabstract}
+$endif$
+\newpage
+
+$body$
+
+$if(bibliography)$
+\bibliography{$bibliography$}
+$endif$
+
+$if(nocite)$
+\bibliography{$bibliography$}
+$for(nocite)$
+  \nocite{$nocite$}
+  $sep$
+$endfor$
+$endif$
+
+\end{document}

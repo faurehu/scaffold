@@ -1,0 +1,22 @@
+Package: Rcustom
+Title: Custom code
+Version: 0.0.0.9000
+Authors@R: 
+    person("Matias", "Faure", , "hi@faure.hu", role = c("aut", "cre"),
+           comment = c(ORCID = ""))
+Description: Custom code
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Depends:
+    ggplot2,
+    tidyverse,
+    fixest (>= 0.11.2),
+    lmtest (>= 0.9.40),
+    marginaleffects (>= 0.21.0),
+    patchwork (>= 1.2.0), 
+    reshape2 (>= 1.4.4),
+    sandwich (>= 3.1.0),
+    stargazer (>= 5.2.3),
+    simstudy (>= 0.8.0)
