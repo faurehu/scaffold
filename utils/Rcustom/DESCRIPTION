@@ -19,4 +19,5 @@ Depends:
     reshape2 (>= 1.4.4),
     sandwich (>= 3.1.0),
     stargazer (>= 5.2.3),
-    simstudy (>= 0.8.0)
+    simstudy (>= 0.8.0),
+    pwr (>= 1.3.0)

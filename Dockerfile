@@ -39,7 +39,8 @@ RUN if [ -z "$DEV_MODE" ]; then \
         'reshape2', \
         'sandwich', \
         'stargazer', \
-        'simstudy'))"; \
+        'simstudy', \
+        'pwr'))"; \
     fi
 
 RUN pip install pandoc-include

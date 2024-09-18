@@ -53,16 +53,13 @@ Containers do not have a reference to the scaffold repository, so it is safe to 
 
 ## Project roadmap
 
-- Power analysis
-- Simulated data / survey generation
-    - Try EDSL https://docs.expectedparrot.com/en/latest/overview.html
-- HPC
 - Include a bit more data
+- Survey generation: https://docs.expectedparrot.com/en/latest/overview.html
 - Global settings and themes for ggplot and stargazer
 - Move home directory to project?
     - Would alter R and pandoc script paths but make more sense
 - Jupyter notebooks
-- Implement tidymodels https://www.tidymodels.org/start/recipes/
+- tidymodels: https://www.tidymodels.org/start/recipes/
 - VSCode settings and extensions
     - R
     - Keyboard shortcuts
