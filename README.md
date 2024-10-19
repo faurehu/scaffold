@@ -37,12 +37,6 @@ All custom R code is in `utils/Rcustom/R`. These functions are loaded when R sta
 
 You need to add dependencies in two different places. First, in the `Dockerfile` so that the image installs these packages when building. Then, add it to the custom package's declared dependencies so that the libraries are loaded when R starts. Do so by editing the `utils/Rcustom/R/DESCRIPTION` file.
 
-## Adding data
-
-Data that is private and is relevant to the project goes to the `/$PROJECT_NAME/assets/data/project` subdirectory and everything else is in the directories in `/assets/project_template/data`. This way, everything that is added to `/assets/project_template/data` will be available to all new containers. On the other hand, data in the `/$PROJECT_NAME/assets/data/project` folder will not be accessible to future projects.
-
-`project_template/assets/data/Description.md` should describe the files. It is very important that there is a reference to find information about source, timespan and variables.
-
 ## Version control
 
 There are two repository configurations in this directory. The first one corresponds to the scaffold project, which manages the reusable code and configurations for each new project. The second git repository is for each new project that is instantiated. Hence, be mindful of what changes you are staging and committing and to which repository.
@@ -53,7 +47,6 @@ Containers do not have a reference to the scaffold repository, so it is safe to 
 
 ## Project roadmap
 
-- Include a bit more data
 - Survey generation: https://docs.expectedparrot.com/en/latest/overview.html
 - Global settings and themes for ggplot and stargazer
 - Move home directory to project?
