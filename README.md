@@ -26,7 +26,7 @@ There is also `sh ./scripts/beamer.sh` and a corresponding sample directory. Unf
 
 ## HPC
 
-After loading the container to the HPC, you can use `scripts/run_task.sh` to queue a R file onto the HPC. This will execute the code in `task.s` which, in turn, is fitted to start the R code of your choice. Look up SLURM docs to learn how to configure the batch so that it runs up to 100 processes in parallel.
+After loading the container to the HPC, you can use `scripts/run_task.sh` to queue a R file onto the HPC. This will execute the code in `task.s` which, in turn, is fitted to start the R code of your choice. Look up SLURM docs to learn how to configure the batch so that it runs up to 100 processes in parallel. This can also be repurposed for Amazon Web Services.
 
 ## Base container features
 
@@ -44,7 +44,7 @@ You can call `sh scripts/build_image.sh` to build the image and it should take a
 
 ## Run
 
-When you are done building a Docker image, there is no virtual computer running in the background. You now need to start a new project.
+When you are done building a Docker image, there is no virtual computer running in the background yet. You now need to start a new project.
 
 You can call `sh scripts/new_project.sh` to launch a new project.
 
