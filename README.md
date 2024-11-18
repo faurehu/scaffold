@@ -99,6 +99,8 @@ All custom R code is in `utils/Rcustom/R`. These functions are loaded when R sta
 
 ## Adding dependencies
 
+This section provides instructions for the development of the image, rather than the use of the container.
+
 You need to add dependencies in two different places. First, in the `Dockerfile` so that the image installs these packages when building. Then, add it to the custom package's declared dependencies so that the libraries are loaded when R starts. Do so by editing the `utils/Rcustom/R/DESCRIPTION` file.
 
 ## Version control
